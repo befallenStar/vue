@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Document</title>
+    <style>
+      .div1 {
+        background-color: green;
+        width: 100px;
+        height: 100px;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="app">
+      {{message}}
+      <input type="text" v-model="message" name="" id="" />
+      <span v-bind:title="message">
+        span标签
+      </span>
+      <div class="div1" v-if="isshow">
+        显示控制
+      </div>
+      <ul>
+        <li v-for="(item,index) in news" :key="index">
+          <a v-bind:href="item.href">{{item.title}}</a>
+        </li>
+      </ul>
+      <button v-on:click="display('temp')">单击事件</button>
+    </div>
+
+    <script src="js/vue.js"></script>
+    <script>
+      var app = new Vue({
+        el: "#app",
+        data: {
+          message: "Hello Vue!",
+          isshow: false,
+          news: [
+            { title: "新闻标题1", href: "https://www.baidu.com" },
+            { title: "新闻标题2", href: "https://www.baidu.com" },
+            { title: "新闻标题3", href: "https://www.baidu.com" },
+            { title: "新闻标题4", href: "https://www.baidu.com" }
+          ]
+        },
+        methods: {
+          display(flag) {
+            console.log("clicked!" + flag);
+            this.isshow = !this.isshow;
+          }
+        }
+      });
+    </script>
+  </body>
+</html>

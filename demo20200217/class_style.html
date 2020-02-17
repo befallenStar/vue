@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .btn{
+            width:100px;
+            height:100px;
+            background-color: green;
+            border-width: 1px;
+            color:white;
+            font-size:14px;
+        }
+        .active{
+            background-color: red;
+            border-width: 2px;
+        }
+        .txt{
+            font-weight:bold;
+        }
+    </style>
+</head>
+<body>
+    <div id="app">
+        <!--绑定样式类可以采用json、数组，结合逻辑表达式
+            json要注意类的命名，不规范的类名需要引号
+            数组要提前在数据区进行定义-->
+        <!--推荐采用数组与json结合-->
+        <div class="btn" :class="[{active:isactivated},txt]" @click="isactivated=!isactivated">按钮</div>
+    </div>
+    <script src="js/vue.js"></script>
+    <script>
+        var app=new Vue({
+            el:'#app',
+            data:{
+                active:'active',
+                txt:'txt',
+                isactivated:true,
+            },
+        })
+    </script>
+</body>
+</html>

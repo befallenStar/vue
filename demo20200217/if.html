@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div id="app" @click="seen=!seen">
+        <h1 v-if="seen">hello</h1>
+        <h1 v-else>goodbye</h1>
+        <!--还有v-else-if-->
+        <!--template对相同判断条件的渲染标签进行捆绑-->
+        <template v-if="seen">
+            <h1>hello</h1>
+            <h1>goodbye</h1>
+        </template>
+        <div v-show="seen">
+            hhhhhhhhhhhh
+        </div>
+        <!--当碰到v-for时，将v-if提到外层template-->
+    </div>
+    <script src="js/vue.js"></script>
+    <script>
+        var app=new Vue({
+            el:'#app',
+            data:{
+                seen:true,
+            },
+        })
+    </script>
+</body>
+</html>

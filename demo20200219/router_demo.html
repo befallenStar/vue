@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <div id="app">
+      <input type="text" name="" v-model="name" />
+      <router-link :to="'/foo/'+name">Go to foo</router-link>
+      <router-link to="/father">Go to father</router-link>
+      <router-view></router-view>
+    </div>
+    <script src="js/vue.js"></script>
+    <script src="js/vue-router.js"></script>
+    <script>
+      var fooTemplate = "<div>Foo{{this.$route.params.name}}</div>";
+      var fatherTemplate =
+        "<div>father\
+            <router-link to='/father/child'>Go to child</router-link>\
+            <router-view></router-view>\
+            </div>";
+      var childTemplate = "<div>child</div>";
+      var homeTemplate = "<div>home</div>";
+      var routes = [
+        {
+          path: "/foo/:name",
+          component: {
+            template: fooTemplate,
+            watch: {
+              $route(to, from) {
+                // console.log(from);
+                // console.log(to);
+              }
+            }
+          }
+        },
+        {
+          path: "/father",
+          component: {
+            template: fatherTemplate
+          },
+          children: [
+            {
+              path: "child",
+              component: {
+                template: childTemplate
+              }
+            }
+          ]
+        },
+        {
+          path: "/",
+          component: {
+            template: homeTemplate
+          }
+        }
+      ];
+      const router = new VueRouter({ routes });
+      router.beforeEach((to, from, next) => {
+        console.log(to, from, next);
+        if (to.path == "/father/child") {
+          alert("no");
+          next("/");
+        } else {
+          next();
+        }
+        // next('/foo');
+      });
+      var app = new Vue({
+        router,
+        data() {
+          return {
+            name: ""
+          };
+        }
+      }).$mount("#app");
+    </script>
+  </body>
+</html>

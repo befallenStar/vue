@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      var a = [];
+      for (var i = 0; i < 10; i++) {
+        a[i] = function() {
+          console.log(i);
+        };
+      }
+      a[6]();
+      var a = [];
+      for (let i = 0; i < 10; i++) {
+        a[i] = function() {
+          console.log(i);
+        };
+      }
+      a[6]();
+      for (let i = 0; i < 3; i++) {
+        let i = "abc";
+        console.log(i);
+      }
+      if (true) {
+        tmp = "abc";
+        console.log(tmp);
+        let tmp;
+        console.log(tmp);
+        tmp = 123;
+        console.log(tmp);
+      }
+      /*
+      let相比var，定义的变量作用于仅在当前代码块，
+      且在当前代码块内对所有同名对象都起作用，
+      因此在一个代码块内时let语句应在变量使用之前，
+      let定义的变量不能被重复定义
+      */
+      /*
+      const定义常量
+      */
+    </script>
+  </body>
+</html>

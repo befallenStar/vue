@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script type="module">
+        import {firstname,lastname} from './js/module_demo.js';
+        import {greet} from './js/module_demo.js';
+        import {student} from './js/module_demo.js';
+        import hello from './js/module_default.js';
+        console.log(firstname+' '+lastname);
+        greet();
+        console.log(student);
+        console.log(student.name);
+        student.study();
+        student.introduce(20);
+        hello();
+    </script>
+</body>
+</html>

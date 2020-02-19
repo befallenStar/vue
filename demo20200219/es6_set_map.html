@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        var myset=new Set();
+        myset.add(10);
+        myset.add("abc");
+        myset.add(10);
+        for(let i of myset){
+            console.log(i);
+        }
+        console.log(...myset);
+        var newset=new Set([1,2,3,4,5,5]);
+        console.log(...newset);
+
+        var mymap=new Map();
+        mymap.set("ben",{name:"ben",age:20});
+        mymap.set("june",{name:"june",age:20});
+        console.log(JSON.stringify(mymap.get("ben")));
+        for([k,v] of mymap){
+            console.log("KEY:"+k+" VALUE:"+JSON.stringify(v))
+        }
+        for(let k of mymap.keys()){
+            console.log("KEY:"+k);
+        }
+        for(let v of mymap.values()){
+            console.log("VALUE:"+JSON.stringify(v));
+        }
+        mymap.forEach((v,k) => {
+            console.log("KEY:"+k+" VALUE:"+JSON.stringify(v));
+        });
+    </script>
+</body>
+</html>

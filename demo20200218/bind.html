@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <div id="app">
+      <input type="text" v-model="txt" />
+      <br />
+      <textarea name="" v-model="txt" cols="30" rows="10"></textarea>
+      <br />
+      输入数字：
+      <input type="text" v-model.number="number" />
+      {{number}} + 100 = {{number+100}}
+      <br />
+      消除前后空格：
+      <input type="text" v-model.trim="hhhh" />
+      111{{hhhh}}111
+      <br />
+      性别：
+      <template v-for="(item,index) in sex" :key="index">
+        <input :value="item.value" type="radio" name="sex" v-model="choice" />
+        {{item.text}}
+      </template>
+      <br />
+      我的性别是：{{choice}}
+      <br />
+      爱好：
+      <template v-for="(item,index) in hobbies" :key="index">
+        <input
+          :value="item.value"
+          type="checkbox"
+          name="hobby"
+          v-model="checked"
+        />
+        {{item.name}}
+      </template>
+      <br />
+      我的爱好是：{{checked}}
+      <br />
+      <select name="city" v-model="selected">
+        <option disabled value="">请选择</option>
+        <option v-for="(item,index) in cities" :key="index" :value="item.value">
+          {{item.text}}
+        </option>
+      </select>
+      选中的城市：{{selected}}
+    </div>
+    <script src="js/vue.js"></script>
+    <script>
+      var app = new Vue({
+        el: "#app",
+        data: {
+          txt: "",
+          number: "",
+          hhhh: "",
+          choice: "",
+          checked: [],
+          selected: "",
+          hobbies: [
+            { name: "吃", value: "1" },
+            { name: "喝", value: "2" },
+            { name: "玩", value: "3" }
+          ],
+          sex: [
+            { text: "男", value: "0" },
+            { text: "女", value: "1" }
+          ],
+          cities: [
+            { text: "南京", value: "0" },
+            { text: "苏州", value: "1" },
+            { text: "无锡", value: "2" }
+          ]
+        }
+      });
+    </script>
+  </body>
+</html>

@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      .div1 {
+        background-color: red;
+        height: 200px;
+        width: 200px;
+      }
+      .div2 {
+        background-color: green;
+        height: 150px;
+        width: 150px;
+      }
+      .div3 {
+        background-color: blue;
+        height: 100px;
+        width: 100px;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="app">
+      <input type="text"v-model="searchtxt" @keydown.alt.65="reverse" @keydown.13="keys" />
+      <button @click="greet">greet</button>
+      <form action="get">
+        账号：
+        <input type="text" v-model="username" placeholder="请输入账号" />
+        <br />
+        密码：
+        <input type="text" v-model="password" placeholder="请输入密码" />
+        <br />
+        <button type="submit" @click.prevent="mysubmit">登录</button>
+        <button type="submit">重置</button>
+      </form>
+      <div class="div1" @click.self="div1click">
+        <div class="div2" @click.stop="div2click">
+          <div class="div3" @click="div3click"></div>
+        </div>
+      </div>
+    </div>
+    <script src="js/vue.js"></script>
+    <script>
+      var app = new Vue({
+        el: "#app",
+        data: {
+          username: "",
+          password: "",
+          searchtxt:"",
+        },
+        methods: {
+          greet: function(event) {
+            console.log("hello");
+            console.log(event.target.tagName);
+          },
+          mysubmit: function(event) {
+            if (this.username.length < 6 || this.password.length < 6) {
+              alert("请输入正确的账号密码！");
+              //阻止默认事件
+              //event.preventDefault();
+              return;
+            }
+          },
+          div1click: function(event) {
+            console.log("div1");
+          },
+          div2click: function(event) {
+            console.log("div2");
+            //停止触发父组件相同条件事件
+            //event.stopPropagation();
+          },
+          div3click: function(event) {
+            console.log("div3");
+          },
+          keys: function(event) {
+            console.log(event.keyCode);
+            //用按键修饰符取代判断
+            // if(13==event.keyCode){
+            //     console.log("search");
+            // }
+            console.log("search");
+          },
+          reverse:function(event){
+              console.log("search:"+this.searchtxt);
+          },
+        }
+      });
+    </script>
+  </body>
+</html>

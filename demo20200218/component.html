@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+        .j-cnt-btn{
+            width:160px;
+            height:33px;
+            border-radius: 5px;
+            font-size:27px;
+            color:white;
+            background-color: aquamarine;
+            text-align: center;
+            font-weight: bold;
+            cursor: pointer;
+        }
+    </style>
+  </head>
+  <body>
+      <div id="app">
+          <j-cnt-btn :name="jCntBtn">按钮</j-cnt-btn>
+      </div>
+    <script src="js/vue.js"></script>
+    <script>
+        Vue.component("j-cnt-btn",{
+            props:['name'],
+            data:function(){
+                return{
+                    count:0,
+                }
+            },
+            methods:{
+                counting:function(){
+                    this.count++;
+                },
+            },
+            template:'<div class="j-cnt-btn" @click="counting">{{name}}{{count}}</div>'
+        })
+      var app = new Vue({
+        el: "#app",
+        data: {
+            jCntBtn:"按钮",
+        }
+      });
+    </script>
+  </body>
+</html>

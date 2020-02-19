@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link
+      rel="stylesheet"
+      href="https://unpkg.com/element-ui/lib/theme-chalk/index.css"
+    />
+  </head>
+  <body>
+    <div id="app">
+      <el-row>
+        <el-col span="8" offset="8">
+          <el-form
+            :model="form"
+            :rules="rules"
+            label-width="80px"
+            size="medium"
+          >
+            <el-form-item label="账号" prop="username">
+              <el-input v-model="form.username" clearable></el-input>
+            </el-form-item>
+            <el-form-item label="密码" prop="password">
+              <el-input
+                v-model="form.password"
+                clearable
+                show-password
+              ></el-input>
+            </el-form-item>
+            <el-form-item label="确认密码" prop="checkPass">
+              <el-input
+                type="password"
+                v-model="form.checkPass"
+                autocomplete="off"
+                show-password
+              ></el-input>
+            </el-form-item>
+            <el-form-item label="出生日期" prop="birthdate">
+              <el-date-picker
+                type="date"
+                placeholder="选择日期"
+                v-model="form.birthdate"
+                style="width: 100%;"
+              ></el-date-picker>
+            </el-form-item>
+            <el-form-item>
+              <el-button type="primary" @click="onSubmit">登录</el-button>
+              <el-button>取消</el-button>
+            </el-form-item>
+          </el-form>
+        </el-col>
+      </el-row>
+    </div>
+    <script src="js/vue.js"></script>
+    <script src="https://unpkg.com/element-ui/lib/index.js"></script>
+    <script>
+      var app = new Vue({
+        el: "#app",
+        data: function() {
+          return {
+            form: {
+              username: "",
+              password: "",
+              checkPass: "",
+              birthdate: new Date()
+            },
+            rules: {
+              username: [
+                { required: "true", message: "请输入账号", trigger: "blur" }
+              ],
+              password: [
+                { required: "true", message: "请输入密码", trigger: "blur" },
+                {
+                  min: "6",
+                  max: "12",
+                  message: "请输入6~12位密码",
+                  trigger: "blur"
+                }
+              ],
+              checkPass: [
+                { required: "true", message: "请输入确认密码", trigger: "blur" }
+              ],
+              birthdate: [
+                { required: "true", message: "请选择日期", trigger: "blur" }
+              ]
+            }
+          };
+        },
+        methods: {
+          onSubmit: function() {
+            console.log(JSON.stringify(this.form));
+          }
+        }
+      });
+    </script>
+  </body>
+</html>

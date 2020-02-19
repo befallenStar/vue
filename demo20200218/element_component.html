@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link
+      rel="stylesheet"
+      href="https://unpkg.com/element-ui/lib/theme-chalk/index.css"
+    />
+  </head>
+  <body>
+    <div id="app">
+      <div>
+        <el-row>
+          <el-button>默认按钮</el-button>
+          <el-button type="primary">主要按钮</el-button>
+          <el-button type="success">成功按钮</el-button>
+          <el-button type="info">信息按钮</el-button>
+          <el-button type="warning">警告按钮</el-button>
+          <el-button type="danger">危险按钮</el-button>
+          <el-button plain>朴素按钮</el-button>
+          <el-button round>圆角按钮</el-button>
+          <el-button disabled>禁用按钮</el-button>
+          <el-button type="text">文字按钮</el-button>
+          <el-button icon="el-icon-search" circle></el-button>
+          <el-button icon="el-icon-search">搜索</el-button>
+          <el-button>
+            搜索
+            <i class="el-icon-search el-icon--right"></i>
+          </el-button>
+        </el-row>
+      </div>
+      <div>
+        <el-link>默认链接</el-link>
+        <el-link type="primary">主要链接</el-link>
+        <el-link type="success">成功链接</el-link>
+        <el-link type="warning">警告链接</el-link>
+        <el-link type="danger">危险链接</el-link>
+        <el-link type="info">信息链接</el-link>
+        <el-link disabled>禁用链接</el-link>
+        <el-link :underline="false">默认链接</el-link>
+        <!--也可带图标-->
+      </div>
+      <div>
+        <el-radio-group v-model="radio">
+          <el-radio :label="3">备选项</el-radio>
+          <el-radio :label="6">备选项</el-radio>
+          <el-radio :label="9">备选项</el-radio>
+        </el-radio-group>
+      </div>
+      <div>
+        <el-radio-group v-model="radio">
+          <el-radio-button :label="3">备选项</el-radio-button>
+          <el-radio-button :label="6">备选项</el-radio-button>
+          <el-radio-button :label="9">备选项</el-radio-button>
+        </el-radio-group>
+      </div>
+      <div>
+        <el-checkbox
+          :indeterminate="isIndeterminate"
+          v-model="checkAll"
+          @change="handleCheckAllChange"
+        >
+          全选
+        </el-checkbox>
+        <div style="margin: 15px 0;"></div>
+        <el-checkbox-group
+          v-model="checkedCities"
+          @change="handleCheckedCitiesChange"
+        >
+          <el-checkbox v-for="city in cities" :label="city" :key="city">
+            {{city}}
+          </el-checkbox>
+        </el-checkbox-group>
+      </div>
+      <div></div>
+      <div></div>
+      <div></div>
+    </div>
+    <script src="js/vue.js"></script>
+    <script src="https://unpkg.com/element-ui/lib/index.js"></script>
+    <script>
+        const cityOptions = ['上海', '北京', '广州', '深圳'];
+      var app = new Vue({
+        el: "#app",
+        data: function() {
+          return {
+            radio: 3,
+            checkAll: false,
+            checkedCities: ["上海", "北京"],
+            cities: cityOptions,
+            isIndeterminate: true
+          };
+        },
+        methods: {
+          handleCheckAllChange(val) {
+            this.checkedCities = val ? cityOptions : [];
+            this.isIndeterminate = false;
+          },
+          handleCheckedCitiesChange(value) {
+            let checkedCount = value.length;
+            this.checkAll = checkedCount === this.cities.length;
+            this.isIndeterminate =
+              checkedCount > 0 && checkedCount < this.cities.length;
+          }
+        }
+      });
+    </script>
+  </body>
+</html>
